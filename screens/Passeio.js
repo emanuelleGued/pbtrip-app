@@ -1,28 +1,11 @@
-import React, { useState } from "react";
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  Button,
-  useEffect,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View, StatusBar } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Calendar } from "react-native-calendars";
 import Comentario from "../ComentariosUsuario/Comentario";
 
-export default function Pousada({ navigation }) {
-  const [data, setData] = useState({});
-  const dataSelecionada = (novadata) => {
-    setData({
-      ...data,
-      [novadata.dateString]: {
-        selected: true,
-      },
-    });
-  };
+export default function Passeio({ navigation, route }) {
+  const rot = route.params.passeio;
+  console.log(route.params.passeio);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -33,11 +16,10 @@ export default function Pousada({ navigation }) {
           delay={500}
           styles={styles.containerHeader}
         >
-          <View style={styles.calendario}>
-            <Calendar markedDates={data} onDayPress={dataSelecionada} />
-          </View>
-
           <View style={styles.containerComment}>
+            <Text style={styles.message}> {rot.titulo}</Text>
+            <Text style={styles.rot}> {rot.roteiro}</Text>
+
             <Comentario />
           </View>
         </Animatable.View>
@@ -63,8 +45,19 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
   },
-  calendario: {
-    flex: 1,
+  message: {
+    fontFamily: "Montserrat",
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#01579B",
+    textAlign: "center",
+  },
+  rot: {
+    fontFamily: "Montserrat",
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#01579B",
+    textAlign: "center",
   },
 
   containerComment: {
