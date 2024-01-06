@@ -25,11 +25,16 @@ export default function IndexScreen({ navigation }) {
       </Animatable.View>
 
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        <Text style={styles.title}> Email </Text>
+        <Text style={styles.title} class="email" name="email">
+          {" "}
+          Email{" "}
+        </Text>
         <TextInput placeholder="Digite um email ..." style={styles.input} />
 
         <Text style={styles.title}>Senha</Text>
         <TextInput
+          class="senha"
+          name="senha"
           placeholder="Digite a sua senha ..."
           style={styles.input}
           secureTextEntry
